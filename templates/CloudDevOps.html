@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<header>
+    <div class="container__left">
+        <div class="nav__logo">Steve N. Njoya</div>
+    </div>
+    <div class="container__right">
+        <ul class="nav__links">
+            <li class="link"><a href="/">Home</a></li>
+            <li class="link"><a href="{{url_for('CloudDevOps')}}">Cloud & DevOps</a></li>
+            <li class="link"><a href="{{url_for('data')}}">Data Science</a></li>
+            <li class="link"><a href="{{url_for('web')}}">web</a></li>
+        </ul>
+    
+    </div>
+</header>
+
+{% endblock content %}

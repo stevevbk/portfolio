@@ -1,0 +1,35 @@
+stages:
+  - build
+#  - test
+  - deploy
+
+variables:
+  FLASK_ENV: development
+
+build:
+  stage: build
+  image: python:3.12
+  script:
+    - echo "Building the application..."
+    - apt-get update -y
+    - apt-get install pip -y
+    - pip install -r requirements.txt
+  artifacts:
+    paths: 
+      - __pycahe__
+
+#test:
+#  stage: test
+#  script:
+#    - echo "Running tests..."
+#    - pytest
+
+deploy:
+  stage: deploy
+  image: python:3.12
+  script:
+    - echo "Deploying the application..."
+    - apt-get update -y
+    - apt-get install pip -y
+    - pip install -r requirements.txt
+    - flask run > /dev/null 2>&1 &
