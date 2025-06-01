@@ -80,6 +80,9 @@ span{
     border: none;
     text-wrap: nowrap;
 }
+.gradient-btn a{
+    color: var(--text-color);
+}
 .gradient-btn:hover{
     transform: scale(1.1); 
 }
