@@ -1,2 +1,8 @@
 # To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+fastapi
 uvicorn
+jinja2
+python-dotenv
+aiosmtplib
+pydantic
+python-multipart

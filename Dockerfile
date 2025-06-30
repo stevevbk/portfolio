@@ -1,27 +1,18 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3-slim
+# Use official Python image
+FROM python:3.11-slim
 
-EXPOSE 5002
-
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
-
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
-
-# Install pip requirements
-COPY requirements.txt .
-RUN python -m pip install --upgrade pip && \
-    python -m pip install -r requirements.txt && \
-    python -m pip install uvicorn
-
+# Set work directory
 WORKDIR /app
-COPY . /app
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+# Copy requirements and install
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5002"]
+# Copy the rest of the code
+COPY . .
+
+# Expose port (FastAPI default)
+EXPOSE 8080
+
+# Run the app
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
