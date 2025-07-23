@@ -6,3 +6,4 @@ python-dotenv
 aiosmtplib
 pydantic
 python-multipart
+email-validator
